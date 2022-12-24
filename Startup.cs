@@ -70,8 +70,9 @@ namespace QuanLySanXuat
                 endpoints.MapControllerRoute(
                     name: "default",
                 //pattern: "{controller=PersonalInformationManament}/{action=PersonalBankManament}/{id?}");
+                pattern: "{controller=Nhanvien}/{action=Index}/{id?}");
                 //pattern: "{controller=Home}/{action=Index}/{id?}");
-                pattern: "{controller=Home}/{action=DangNhap}/{id?}");
+                //pattern: "{controller=Home}/{action=DangNhap}/{id?}");
 
                 //pattern: "{controller=Admin}/{action=Index}/{id?}");
                 //pattern: "{controller=QuanLyTonKho}/{action=QuanLyNhapKho}/{id?}");

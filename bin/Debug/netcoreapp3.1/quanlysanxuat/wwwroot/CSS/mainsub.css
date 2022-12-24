@@ -2175,7 +2175,7 @@ div.dataTables_wrapper div.dataTables_filter input {
 
 .form-control:focus {
     color: #495057;
-    background-color: #FFF;
+   /* background-color: #FFF;*/
     border-color: rgb(0, 28, 64);
     outline: 0;
     -webkit-box-shadow: none;

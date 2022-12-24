@@ -3,7 +3,7 @@
 @{
     ProductionManagementSoftwareContext _context = new ProductionManagementSoftwareContext();
     List<Nhomvl> nhomvatlieu = _context.Nhomvl.Where(n => n.Active == 1).ToList();
-    List<Nhacungcapvl> nhacungcap = _context.Nhacungcapvl.Where(n => n.Active == 1).ToList();
+    List<Nuocsx> nuocsx = _context.Nuocsx.Where(n => n.Active == 1).ToList();
     List<Hangsx> hangsanxuat = _context.Hangsx.Where(n => n.Active == 1).ToList();
     List<Vatlieu> vatlieu = _context.Vatlieu.Where(n => n.Active == 1).ToList();
 
@@ -34,75 +34,7 @@
 </head>
 
 <body class="app sidebar-mini rtl">
-    <style>
-        .Choicefile {
-            display: block;
-            background: #14142B;
-            border: 1px solid #fff;
-            color: #fff;
-            width: 150px;
-            text-align: center;
-            text-decoration: none;
-            cursor: pointer;
-            padding: 5px 0px;
-            border-radius: 5px;
-            font-weight: 500;
-            align-items: center;
-            justify-content: center;
-        }
-
-            .Choicefile:hover {
-                text-decoration: none;
-                color: white;
-            }
-
-        #uploadfile,
-        .removeimg {
-            display: none;
-        }
-
-        #thumbbox {
-            position: relative;
-            width: 100%;
-            margin-bottom: 20px;
-        }
-
-        .removeimg {
-            height: 25px;
-            position: absolute;
-            background-repeat: no-repeat;
-            top: 5px;
-            left: 5px;
-            background-size: 25px;
-            width: 25px;
-            /* border: 3px solid red; */
-            border-radius: 50%;
-        }
-
-            .removeimg::before {
-                -webkit-box-sizing: border-box;
-                box-sizing: border-box;
-                content: '';
-                border: 1px solid red;
-                background: red;
-                text-align: center;
-                display: block;
-                margin-top: 11px;
-                transform: rotate(45deg);
-            }
-
-            .removeimg::after {
-                /* color: #FFF; */
-                /* background-color: #DC403B; */
-                content: '';
-                background: red;
-                border: 1px solid red;
-                text-align: center;
-                display: block;
-                transform: rotate(-45deg);
-                margin-top: -2px;
-            }
-    </style>
+    
     <!-- Navbar-->
     <header class="app-header">
         <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar"
@@ -234,17 +166,17 @@
 
                                     </select>
                                 </div>
-                                @*<div class="form-group col-md-4 col-sm-12">
+                                <div class="form-group col-md-4 col-sm-12">
 
                                     <label for="exampleSelect1" class="control-label">Nhà cung cấp</label>
-                                    <select class="form-control" id="exampleSelect1" name="Nhacungcapidncc">
-                                        <option>-- Chọn nhà cung cấp --</option>
-                                        @foreach (var item in nhacungcap)
+                                    <select asp-for="Idnsx" class="form-control" id="exampleSelect1" >
+                                        <option>-- Chọn nước sản xuất --</option>
+                                        @foreach (var item in nuocsx)
                                         {
-                                            <option value="@item.Idncc">@item.Tenncc</option>
+                                            <option value="@item.Idnsx">@item.Tennsx</option>
                                         }
                                     </select>
-                                </div>*@
+                                </div>
                                 <div class="form-group col-md-3 col-sm-12">
 
                                     <label class="control-label">Mã vật liệu </label>
@@ -358,50 +290,25 @@
                  
                             <div class="row">
                                 <div class="col-4"></div>
-                                <h3 class="thong-tin-thanh-toan text-center col-4">Thêm mới nhà cung cấp</h3>
+                                <h3 class="thong-tin-thanh-toan text-center col-4">Thêm mới nước sản xuất</h3>
                                 <span class="col-4" data-dismiss="modal" href="#"><i style="float:right;cursor:pointer" class="fas fa-times"></i></span>
                             </div>
-                            @using (Html.BeginForm("Create", "Nhacungcaps"))
+                            @using (Html.BeginForm("Create", "Nuocsx"))
                             {
                                 <div class="">
                                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                     <div class="row">
 
                                         <div class="form-group col-md-4 col-sm-12">
-                                            <label class="control-label">MÃ NHÀ CUNG CẤP</label>
-                                            <input class="form-control" type="text" required name="Mancc">
+                                            <label class="control-label">Mã nước sản xuất</label>
+                                            <input class="form-control" type="text" required name="Mansx">
                                         </div>
                                         <div class="form-group col-md-8 col-sm-12">
 
-                                            <label class="control-label">TÊN NHÀ CUNG CẤP</label>
-                                            <input class="form-control" type="text" required name="Tenncc">
+                                            <label class="control-label">Tên nước sản xuất</label>
+                                            <input class="form-control" type="text" required name="Tennsx">
                                         </div>
-                                        <div class="form-group col-md-4 col-sm-12">
-
-                                            <label class="control-label">SỐ ĐIỆN THOẠI</label>
-                                            <input class="form-control" type="text" required name="Sdt">
-                                        </div>
-                                        <div class="form-group col-md-8 col-sm-12">
-
-                                            <label class="control-label">ĐỊA CHỈ</label>
-                                            <input class="form-control" type="text" required name="Diachi">
-                                        </div>
-
-                                        <div class="form-group col-md-6 col-sm-12">
-
-                                            <label class="control-label">EMAIL</label>
-                                            <input class="form-control" type="text" required name="Email">
-                                        </div>
-                                        <div class="form-group col-md-6 col-sm-12">
-
-                                            <label class="control-label">MÃ SỐ THUẾ</label>
-                                            <input class="form-control" type="text" required name="Masothue">
-                                        </div>
-                                        <div class="form-group col-md-12 col-sm-12">
-
-                                            <label class="control-label">GHI CHÚ</label>
-                                            <textarea class="form-control" cols="10" rows="5" type="text" name="Ghichu"></textarea>
-                                        </div>
+                                        
                                     </div>
                                 </div>
 
@@ -410,22 +317,22 @@
 
                                 <BR>
                                 <div class="form-group  col-md-12" style="height:20vh; overflow-y:scroll">
-                                    <h3 class="control-label text-center mt-2 mb-2">Danh sách nhà cung cấp hiện hợp tác</h3>
+                                    <h3 class="control-label text-center mt-2 mb-2">Danh sách nước sản xuất</h3>
                                     <ul style="padding-left: 20px;">
 
-                                        @foreach (var item in nhacungcap)
+                                        @foreach (var item in nuocsx)
                                         {
                                             <li>
                                                 <div class="row">
                                                     <div class="col-md-8">
-                                                        @item.Mancc - @item.Tenncc
+                                                        @item.Mansx - @item.Tennsx
 
                                                     </div>
                                                     <div class="col-md-4">
-                                                        <a asp-action="Edit" class="btn btn-warning" asp-controller="Nhacungcaps" asp-route-id="@item.Idncc"><i class="fas fa-edit"></i></a>
-                                                        <a asp-action="Details" class="btn btn-info " asp-controller="Nhacungcaps" asp-route-id="@item.Idncc"> <i class="fas fa-info-circle"></i></a>
+                                                        <a asp-action="Edit" class="btn btn-warning" asp-controller="Nuocsx" asp-route-id="@item.Idnsx"><i class="fas fa-edit"></i></a>
+                                                        <a asp-action="Details" class="btn btn-info " asp-controller="Nuocsx" asp-route-id="@item.Idnsx"> <i class="fas fa-info-circle"></i></a>
 
-                                                        <a asp-action="Delete" class="btn btn-danger " asp-controller="Nhacungcaps" asp-route-id="@item.Idncc"><i class="fas fa-trash-alt"></i></a>
+                                                        <a asp-action="Delete" class="btn btn-danger " asp-controller="Nuocsx" asp-route-id="@item.Idnsx"><i class="fas fa-trash-alt"></i></a>
                                                     </div>
                                                 </div>
 
